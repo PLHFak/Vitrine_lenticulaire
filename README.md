@@ -1,8 +1,24 @@
-# Vitrine lenticulaire — Les Veilleurs
+# La vitrine lenticulaire — Les Veilleurs
 
-Dossier de travail (usage interne EHlab / THE FAKTORY) : note de principe du châssis à serrage périphérique de l'écran lenticulaire de *Les Veilleurs* (Eva L'Hoest, Beaufort 27, Westende).
+Note de principe et dossier de fabrication du double vitrage démontable de l'écran lenticulaire (site statique).
 
-Site statique : `index.html` + `data.js`. Seul `data.js` est à modifier pour mettre le contenu à jour ; chaque commit redéploie automatiquement sur Vercel.
+- `data.js` — tout le contenu : contexte, fiche, principe, montage, profil & vent, fournitures, points ouverts, documents, prompt CAO, journal
+- `img/` — figures de principe, croquis, châssis v01, vues du STEP v00
+- `docs/` — note v01 (PDF), note vent (MD), PDF cartouchés des schémas (`docs/pdf/`), CAO (`docs/cao/` : STEP v00 de J. Miceli, STL châssis v01), plans du socle
+- `vercel.json` — déploiement Vercel (preset Other), noindex
 
-- `img/` — schémas de principe et vues de contexte
-- `docs/` — note PDF et plans
+Site : https://vitrine-lenticulaire.vercel.app (à importer sur Vercel depuis ce dépôt). Lien direct : https://vitrine-lenticulaire.vercel.app/?code=EVA
+
+## Charte commune aux trois dossiers
+
+Les trois sites (`Base_les_veilleurs`, `Vitrine_lenticulaire`, `Aquarium-K9`) partagent le même gabarit :
+
+- `lv.css` et `lv.js` — styles, barre de titre (liens vers les trois dossiers, onglets de langue), cartouche technique, cartes « Documents ». **Ces deux fichiers doivent rester identiques dans les trois dépôts** : toute modification se recopie dans les deux autres.
+- `data.js` — le seul fichier de contenu. Chaque texte est donné dans les quatre langues avec `L("fr","en","nl","de")` ; les schémas et plans restent légendés en français.
+- `index.html` — gabarit et rendu des sections propres au dossier (ne porte pas de contenu).
+- `build.py` — génère les vignettes (`docs/thumbs/`), les PDF avec cartouche des schémas (`docs/pdf/`), les PNG des plans (`docs/png/`) et `docs/sizes.js`. S'appuie sur `lv_build.py` (commun, identique dans les trois dépôts ; Pillow, reportlab, pdftoppm).
+
+Langue : onglets FR / EN / NL / DE en haut de page, ou `?lang=en` dans le lien ; le choix est mémorisé dans le navigateur.
+
+Accès : code `EVA` (côté client, `lv.js`), ou `?code=EVA` dans le lien. Pages en `noindex`.
+

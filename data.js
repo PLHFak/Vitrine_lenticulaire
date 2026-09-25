@@ -1,134 +1,188 @@
-// Données du dossier « Vitrine lenticulaire — Les Veilleurs ».
-// Ce fichier est le seul à modifier pour mettre le site à jour :
-// chaque commit sur GitHub redéploie automatiquement sur Vercel.
+// Vitrine lenticulaire — données du site.
+// Seul ce fichier porte le contenu ; index.html, lv.css et lv.js sont communs aux trois dossiers.
+// Chaque texte est donné dans les quatre langues : L("fr", "en", "nl", "de"). Les schémas restent légendés en français.
+const L = (fr, en, nl, de) => ({fr, en, nl, de});
 
 window.DATA = {
-  version: "0.1",
-  date: "25 septembre 2026",
+  version: "0.2",
+  date: "25-09-2026",
+  titre: L("La vitrine lenticulaire", "The lenticular showcase", "De lenticulaire vitrine", "Die Lentikular-Vitrine"),
+  sous_titre: L("Les Veilleurs · Eva L'Hoest · Beaufort 27 — note de principe et dossier de fabrication", "Les Veilleurs · Eva L'Hoest · Beaufort 27 — principle note and fabrication file", "Les Veilleurs · Eva L'Hoest · Beaufort 27 — principenota en fabricagedossier", "Les Veilleurs · Eva L'Hoest · Beaufort 27 — Grundsatznotiz und Fertigungsdossier"),
+  cartouche: {
+    num: "LV-VL-WEB-01", statut: "ESQUISSE", genere: "25-09-2026 04:11",
+    objet: L("Double vitrage démontable à serrage périphérique, lenticulaire libre, châssis U inox encastré dans le socle", "Demountable double glazing with peripheral clamping, free lenticular sheet, stainless U frame cast into the base", "Demonteerbare dubbele beglazing met omtrekklemming, vrije lenticulaire plaat, inox U-kader ingestort in de sokkel", "Demontierbare Doppelverglasung mit umlaufender Klemmung, freie Lentikularplatte, Edelstahl-U-Rahmen im Sockel eingelassen"),
+    url: "https://vitrine-lenticulaire.vercel.app", repo: "github.com/PLHFak/Vitrine_lenticulaire"
+  },
+  nav: [
+    {id:"contexte", label:L("Contexte","Context","Context","Kontext")},
+    {id:"fiche", label:L("Fiche","Data sheet","Fiche","Datenblatt")},
+    {id:"principe", label:L("Principe","Principle","Principe","Prinzip")},
+    {id:"montage", label:L("Montage","Assembly","Montage","Montage")},
+    {id:"vent", label:L("Profil & vent","Profile & wind","Profiel & wind","Profil & Wind")},
+    {id:"fournitures", label:L("Fournitures","Supplies","Leveringen","Lieferungen")},
+    {id:"ouverts", label:L("Points ouverts","Open points","Open punten","Offene Punkte")},
+    {id:"documents", label:L("Documents","Documents","Documenten","Dokumente")},
+    {id:"cao", label:L("Prompt CAO","CAD prompt","CAD-prompt","CAD-Prompt")},
+    {id:"journal", label:L("Journal","Log","Logboek","Protokoll")}
+  ],
 
-  // ---- Contexte : les trois vues -----------------------------------------
+  accroche: L("Un double vitrage démontable, construit à la main : le lenticulaire pincé entre deux verres, dans une lame d'air sec.",
+              "A demountable double glazing, built by hand: the lenticular sheet pinched between two panes, in a dry-air cavity.",
+              "Een demonteerbare dubbele beglazing, met de hand gebouwd: de lenticulaire plaat geklemd tussen twee glazen, in een droge luchtspouw.",
+              "Eine demontierbare, von Hand gebaute Doppelverglasung: die Lentikularplatte zwischen zwei Gläsern eingeklemmt, in einer trockenen Luftschicht."),
+
   contexte: {
-    intro: "L'écran lenticulaire est l'un des cinq éléments de l'œuvre : un panneau de 1 800 × 1 200 mm dressé face à la mer sur le socle monobloc, qui crée un effet d'invisibilité contre l'horizon. Les trois figures en bronze ne sont pas représentées sur ces vues.",
+    titre: L("Mise en contexte","Context","Situering","Einordnung"),
+    sous: L("trois vues de l'œuvre","three views of the artwork","drie zichten op het kunstwerk","drei Ansichten des Kunstwerks"),
+    intro: L("L'écran lenticulaire est l'un des cinq éléments de l'œuvre : un panneau de 1 800 × 1 200 mm dressé face à la mer sur le socle monobloc, qui crée un effet d'invisibilité contre l'horizon. Les trois figures en bronze ne sont pas représentées sur ces vues.",
+             "The lenticular screen is one of the five elements of the artwork: a 1,800 × 1,200 mm panel standing on the monolithic base, facing the sea, creating an effect of invisibility against the horizon. The three bronze figures are not shown in these views.",
+             "Het lenticulaire scherm is een van de vijf elementen van het kunstwerk: een paneel van 1 800 × 1 200 mm dat op de monolithische sokkel naar de zee gericht staat en een onzichtbaarheidseffect tegen de horizon creëert. De drie bronzen figuren zijn op deze zichten niet weergegeven.",
+             "Der Lentikularschirm ist eines der fünf Elemente des Kunstwerks: eine 1 800 × 1 200 mm große Tafel, die auf dem monolithischen Sockel dem Meer zugewandt steht und einen Unsichtbarkeitseffekt gegen den Horizont erzeugt. Die drei Bronzefiguren sind in diesen Ansichten nicht dargestellt."),
     vues: [
-      { titre: "Rendu de l'ensemble", legende: "Socle, cadre de l'écran et niche des cristaux — maquette 3D J. Miceli, 24-09-26", img: "img/rendu_260924.jpeg" },
-      { titre: "Ensemble base + écran + cristaux", legende: "Planche v01 du 22-09-26 — écran 1 800 × 1 200, 1 730 hors sol", img: "img/plan_ensemble.png", pdf: "docs/base_cplt_260922.pdf" },
-      { titre: "Base monobloc V00", legende: "Comblanchien 6 720 kg — réservations 50 × 110 pour les montants", img: "img/plan_base.png", pdf: "docs/base_mono_bloc_V00.pdf" }
+      {titre:L("Rendu de l'ensemble","Overall rendering","Rendering van het geheel","Gesamtdarstellung"), legende:L("Socle, cadre de l'écran et niche des cristaux — maquette 3D J. Miceli, 24-09-26","Base, screen frame and crystal niche — 3D model J. Miceli, 24-09-26","Sokkel, schermkader en kristalnis — 3D-model J. Miceli, 24-09-26","Sockel, Schirmrahmen und Kristallnische — 3D-Modell J. Miceli, 24-09-26"), img:"img/rendu_260924.jpeg"},
+      {titre:L("Ensemble base + écran + cristaux","Base + screen + crystals assembly","Geheel sokkel + scherm + kristallen","Gesamtansicht Sockel + Schirm + Kristalle"), legende:L("Planche v01 du 22-09-26 — écran 1 800 × 1 200, 1 730 hors sol","Sheet v01 of 22-09-26 — screen 1,800 × 1,200, 1,730 above ground","Blad v01 van 22-09-26 — scherm 1 800 × 1 200, 1 730 boven de grond","Blatt v01 vom 22-09-26 — Schirm 1 800 × 1 200, 1 730 über Boden"), img:"img/plan_ensemble.png", pdf:"docs/base_cplt_260922.pdf"},
+      {titre:L("Base monobloc V00","Monolithic base V00","Monoliet sokkel V00","Monolithischer Sockel V00"), legende:L("Comblanchien 6 720 kg — réservations 50 × 110 pour les montants","Comblanchien 6,720 kg — 50 × 110 recesses for the uprights","Comblanchien 6 720 kg — uitsparingen 50 × 110 voor de stijlen","Comblanchien 6 720 kg — Aussparungen 50 × 110 für die Pfosten"), img:"img/plan_base.png", pdf:"docs/base_mono_bloc_V00.pdf"}
     ]
   },
 
-  // ---- Fiche technique -----------------------------------------------------
   fiche: {
-    "Dimensions": "1 800 × 1 200 mm hors socle, montants prolongés ≈ 500 mm",
-    "Vitrage": "2 × verre feuilleté de sécurité 55.2, antireflet, PVB filtrant UV",
-    "Lenticulaire": "PETG 6 mm, 20 LPI, libre — non collé",
-    "Lame d'air": "≈ 7 mm, air sec ; sandwich ≈ 29 mm",
-    "Étanchéité": "joint tubulaire Ø ≈ 10 vulcanisé en cadre fermé + cadre de positionnement",
-    "Châssis": "U inox 316L 80 × 40 × 5 soudé laser (prédimensionné vent 220 km/h) — 100 × 40 × 3 dans la maquette V00 de Jacky",
-    "Serrage": "entretoises à deux poussoirs taraudés, tige à pas contraires",
-    "Protection": "balayage air sec par 2 tubes Ø4 à travers le joint, poche d'équilibrage + dessiccant"
+    titre: L("Fiche technique","Technical data sheet","Technische fiche","Technisches Datenblatt"),
+    sous: L("esquisse v01 — à valider par l'artiste","sketch v01 — to be validated by the artist","schets v01 — te valideren door de kunstenaar","Entwurf v01 — von der Künstlerin zu validieren"),
+    items: [
+      [L("Dimensions","Dimensions","Afmetingen","Abmessungen"), L("1 800 × 1 200 mm hors socle, montants prolongés ≈ 500 mm","1,800 × 1,200 mm above the base, uprights extended ≈ 500 mm","1 800 × 1 200 mm boven de sokkel, stijlen verlengd ≈ 500 mm","1 800 × 1 200 mm über dem Sockel, Pfosten um ≈ 500 mm verlängert")],
+      [L("Vitrage","Glazing","Beglazing","Verglasung"), L("2 × verre feuilleté de sécurité 55.2, antireflet, PVB filtrant UV","2 × laminated safety glass 55.2, anti-reflective, UV-filtering PVB","2 × gelaagd veiligheidsglas 55.2, antireflectie, uv-werende PVB","2 × Verbundsicherheitsglas 55.2, entspiegelt, UV-filternde PVB-Folie")],
+      [L("Lenticulaire","Lenticular sheet","Lenticulaire plaat","Lentikularplatte"), L("PETG 6 mm, 20 LPI, libre — non collé","PETG 6 mm, 20 LPI, free — not bonded","PETG 6 mm, 20 LPI, vrij — niet verlijmd","PETG 6 mm, 20 LPI, frei — nicht verklebt")],
+      [L("Lame d'air","Air cavity","Luchtspouw","Luftschicht"), L("≈ 7 mm, air sec ; sandwich ≈ 29 mm","≈ 7 mm, dry air; sandwich ≈ 29 mm","≈ 7 mm, droge lucht; sandwich ≈ 29 mm","≈ 7 mm, trockene Luft; Sandwich ≈ 29 mm")],
+      [L("Étanchéité","Sealing","Afdichting","Abdichtung"), L("joint tubulaire Ø ≈ 10 vulcanisé en cadre fermé + cadre de positionnement","Ø ≈ 10 tubular seal vulcanised as a closed frame + positioning frame","buisvormige dichting Ø ≈ 10 gevulkaniseerd als gesloten kader + positioneerkader","Schlauchdichtung Ø ≈ 10, als geschlossener Rahmen vulkanisiert + Positionierrahmen")],
+      [L("Châssis","Frame","Kader","Rahmen"), L("U inox 316L 80 × 40 × 5 soudé laser (prédimensionné vent 220 km/h) — 100 × 40 × 3 dans la maquette V00 de Jacky","316L stainless U 80 × 40 × 5, laser-welded (pre-sized for 220 km/h wind) — 100 × 40 × 3 in Jacky's V00 model","Inox 316L U-profiel 80 × 40 × 5 lasergelast (voorgedimensioneerd op wind 220 km/u) — 100 × 40 × 3 in Jacky's V00-model","Edelstahl 316L U-Profil 80 × 40 × 5, lasergeschweißt (vorbemessen für Wind 220 km/h) — 100 × 40 × 3 in Jackys V00-Modell")],
+      [L("Serrage","Clamping","Klemming","Klemmung"), L("entretoises à deux poussoirs taraudés, tige à pas contraires","spacers with two tapped pushers, opposite-thread rod","afstandhouders met twee getapte drukstukken, stang met tegengestelde schroefdraad","Distanzstücke mit zwei Gewindedruckstücken, Stange mit gegenläufigem Gewinde")],
+      [L("Protection","Protection","Bescherming","Schutz"), L("balayage air sec par 2 tubes Ø4 à travers le joint, poche d'équilibrage + dessiccant","dry-air purge through 2 Ø4 tubes across the seal, balancing bag + desiccant","spoeling met droge lucht via 2 buisjes Ø4 door de dichting, vereffeningszak + droogmiddel","Trockenluftspülung über 2 Röhrchen Ø4 durch die Dichtung, Ausgleichsbeutel + Trockenmittel")]
+    ]
   },
 
-  // ---- Principe (sections) -------------------------------------------------
-  principe: [
-    {
-      id: "sandwich", titre: "Le sandwich", img: "img/fig3_sandwich.png",
-      texte: "Le film lenticulaire ne peut être laissé nu en front de mer. Il est pincé, sans collage, entre deux verres feuilletés 55.2 qui apportent la rigidité, la sécurité du public, l'étanchéité et le filtrage UV. Le PETG et le verre ne se dilatent pas de la même façon : un collage finirait par grisailler par décollements partiels, la plaque reste donc libre. Un joint tubulaire vulcanisé en cadre fermé rend la lame d'air étanche ; un cadre de positionnement, collé sur un verre, le tient en place et sert de butée d'écrasement.",
-      pourquoi: "Un vitrier ne peut pas insérer une plaque lenticulaire dans un double vitrage scellé à coût raisonnable. On fabrique donc un double vitrage par construction, démontable."
-    },
-    {
-      id: "air", titre: "La lame d'air : condensation et prolifération", img: "img/fig4_air_sec.png",
-      texte: "Deux tubes Ø4 traversent le joint périphérique, en bas et en haut, dans la zone masquée par le châssis — aucun perçage du verre. En atelier, une pompe fait circuler quelques heures de l'air passé sur dessiccant jusqu'à remplacer l'air ambiant humide ; on peut y ajouter un agent antibactérien et fongicide, ou de l'azote sec. Sur site, le réseau reste relié à une poche souple contenant une réserve de dessiccant remplaçable.",
-      pourquoi: "La poche équilibre en permanence la pression intérieure et extérieure : le joint périphérique n'est jamais sollicité, ni en pression ni en dépression."
-    },
-    {
-      id: "chassis", titre: "Le châssis et le serrage", img: "img/fig2_coupe_montant.png",
-      texte: "Cadre en U inox 316L, traverse basse soudée, traverse haute rapportée après insertion du sandwich. Dans le U, côté opposé au vitrage, des entretoises de pression : deux poussoirs taraudés (filet droit, filet gauche) écartés par une tige à pas contraires — un tour de tige écarte les deux poussoirs ensemble, principe du ridoir. Leur serrage plaque le sandwich contre l'aile opposée et comprime le joint jusqu'à la butée du cadre intérieur. Des rubans souples minces calent le verre et le laissent glisser (dilatation différentielle verre / inox). Un cache clipsé ferme le U.",
-      pourquoi: "Les montants sont scellés ≈ 500 mm dans le socle de 6,7 t : la tenue au vent vient de l'encastrement, pas des angles du cadre. La triangulation par les verres suffit à rendre l'ensemble stable.",
-      croquis: "img/croquis_260924.jpeg"
-    },
-    {
-      id: "elevation", titre: "Élévation", img: "img/fig1_elevation.png",
-      texte: "Cotes en mm. Le profil 80 × 40 est le schéma de principe ; il peut être porté à 100 × 40 si le calcul au vent l'exige, mais l'artiste préfère rester dans des dimensions discrètes."
-    }
-  ],
+  principe: {
+    titre: L("Le principe","The principle","Het principe","Das Prinzip"),
+    lead: L("Pourquoi cette solution plutôt qu'un double vitrage industriel ou un collage : parce qu'elle se démonte, s'entretient et laisse le lenticulaire libre de se dilater.",
+            "Why this solution rather than an industrial double glazing or bonding: because it can be dismantled, serviced, and leaves the lenticular sheet free to expand.",
+            "Waarom deze oplossing in plaats van een industriële dubbele beglazing of verlijming: omdat ze demonteerbaar en onderhoudbaar is en de lenticulaire plaat vrij laat uitzetten.",
+            "Warum diese Lösung statt einer industriellen Doppelverglasung oder Verklebung: weil sie sich demontieren und warten lässt und der Lentikularplatte freie Ausdehnung erlaubt."),
+    croquis_leg: L("Croquis de principe d'origine (24-09-26)","Original principle sketch (24-09-26)","Oorspronkelijke principeschets (24-09-26)","Ursprüngliche Prinzipskizze (24-09-26)"),
+    items: [
+      {id:"sandwich", titre:L("Le sandwich","The sandwich","De sandwich","Das Sandwich"), img:"img/fig3_sandwich.png",
+       texte:L("Le film lenticulaire ne peut être laissé nu en front de mer. Il est pincé, sans collage, entre deux verres feuilletés 55.2 qui apportent la rigidité, la sécurité du public, l'étanchéité et le filtrage UV. Le PETG et le verre ne se dilatent pas de la même façon : un collage finirait par grisailler par décollements partiels, la plaque reste donc libre. Un joint tubulaire vulcanisé en cadre fermé rend la lame d'air étanche ; un cadre de positionnement, collé sur un verre, le tient en place et sert de butée d'écrasement.",
+               "The lenticular film cannot be left bare on the seafront. It is pinched, without adhesive, between two 55.2 laminated panes that provide stiffness, public safety, sealing and UV filtering. PETG and glass do not expand in the same way: a bonded assembly would eventually grey out through partial delamination, so the sheet stays free. A tubular seal vulcanised as a closed frame makes the air cavity tight; a positioning frame bonded to one pane holds it in place and acts as a compression stop.",
+               "De lenticulaire folie kan aan de zeedijk niet onbeschermd blijven. Ze wordt zonder lijm geklemd tussen twee gelaagde glazen 55.2 die stijfheid, veiligheid van het publiek, afdichting en uv-filtering bieden. PETG en glas zetten niet op dezelfde manier uit: een verlijming zou op termijn grijs worden door plaatselijke onthechting, dus blijft de plaat vrij. Een als gesloten kader gevulkaniseerde buisvormige dichting maakt de luchtspouw dicht; een positioneerkader, op één glas gelijmd, houdt ze op haar plaats en dient als aanslag voor de samendrukking.",
+               "Die Lentikularfolie kann an der Seefront nicht ungeschützt bleiben. Sie wird ohne Verklebung zwischen zwei Verbundgläsern 55.2 eingeklemmt, die Steifigkeit, Sicherheit für das Publikum, Dichtheit und UV-Filterung bringen. PETG und Glas dehnen sich unterschiedlich aus: Eine Verklebung würde durch Teilablösungen mit der Zeit vergrauen, daher bleibt die Platte frei. Eine als geschlossener Rahmen vulkanisierte Schlauchdichtung macht die Luftschicht dicht; ein auf ein Glas geklebter Positionierrahmen hält sie an Ort und Stelle und dient als Pressanschlag."),
+       pourquoi:L("Un vitrier ne peut pas insérer une plaque lenticulaire dans un double vitrage scellé à coût raisonnable. On fabrique donc un double vitrage par construction, démontable.",
+                  "A glazier cannot insert a lenticular sheet into a sealed double glazing at a reasonable cost. So we build a double glazing by construction, demountable.",
+                  "Een glazenmaker kan een lenticulaire plaat niet tegen een redelijke prijs in een verzegelde dubbele beglazing inbouwen. Daarom bouwen we zelf een demonteerbare dubbele beglazing.",
+                  "Ein Glaser kann eine Lentikularplatte nicht zu vertretbaren Kosten in eine versiegelte Doppelverglasung einbauen. Also bauen wir eine Doppelverglasung selbst, demontierbar.")},
+      {id:"air", titre:L("La lame d'air : condensation et prolifération","The air cavity: condensation and growth","De luchtspouw: condensatie en aangroei","Die Luftschicht: Kondensation und Bewuchs"), img:"img/fig4_air_sec.png",
+       texte:L("Deux tubes Ø4 traversent le joint périphérique, en bas et en haut, dans la zone masquée par le châssis — aucun perçage du verre. En atelier, une pompe fait circuler quelques heures de l'air passé sur dessiccant jusqu'à remplacer l'air ambiant humide ; on peut y ajouter un agent antibactérien et fongicide, ou de l'azote sec. Sur site, le réseau reste relié à une poche souple contenant une réserve de dessiccant remplaçable.",
+               "Two Ø4 tubes pass through the peripheral seal, at the bottom and the top, in the zone hidden by the frame — no drilling of the glass. In the workshop, a pump circulates air passed over desiccant for a few hours until the humid ambient air is replaced; an antibacterial and fungicidal agent, or dry nitrogen, can be added. On site, the circuit stays connected to a soft bag holding a replaceable desiccant reserve.",
+               "Twee buisjes Ø4 gaan onder en boven door de omtrekdichting, in de zone die door het kader verborgen is — geen boring in het glas. In het atelier laat een pomp enkele uren over droogmiddel geleide lucht circuleren tot de vochtige omgevingslucht vervangen is; men kan er een antibacterieel en schimmelwerend middel of droge stikstof aan toevoegen. Ter plaatse blijft het circuit verbonden met een soepele zak met een vervangbare voorraad droogmiddel.",
+               "Zwei Röhrchen Ø4 durchqueren die umlaufende Dichtung unten und oben im vom Rahmen verdeckten Bereich — keine Bohrung im Glas. In der Werkstatt lässt eine Pumpe einige Stunden über Trockenmittel geführte Luft zirkulieren, bis die feuchte Umgebungsluft ersetzt ist; ein antibakterielles und fungizides Mittel oder trockener Stickstoff können zugesetzt werden. Vor Ort bleibt das Netz mit einem weichen Beutel mit auswechselbarer Trockenmittelreserve verbunden."),
+       pourquoi:L("La poche équilibre en permanence la pression intérieure et extérieure : le joint périphérique n'est jamais sollicité, ni en pression ni en dépression.",
+                  "The bag continuously balances inner and outer pressure: the peripheral seal is never loaded, neither in pressure nor in vacuum.",
+                  "De zak vereffent voortdurend de binnen- en buitendruk: de omtrekdichting wordt nooit belast, noch op druk noch op onderdruk.",
+                  "Der Beutel gleicht Innen- und Außendruck ständig aus: Die umlaufende Dichtung wird nie belastet, weder durch Über- noch Unterdruck.")},
+      {id:"chassis", titre:L("Le châssis et le serrage","The frame and the clamping","Het kader en de klemming","Der Rahmen und die Klemmung"), img:"img/fig2_coupe_montant.png", croquis:"img/croquis_260924.jpeg",
+       texte:L("Cadre en U inox 316L, traverse basse soudée, traverse haute rapportée après insertion du sandwich. Dans le U, côté opposé au vitrage, des entretoises de pression : deux poussoirs taraudés (filet droit, filet gauche) écartés par une tige à pas contraires — un tour de tige écarte les deux poussoirs ensemble, principe du ridoir. Leur serrage plaque le sandwich contre l'aile opposée et comprime le joint jusqu'à la butée du cadre intérieur. Des rubans souples minces calent le verre et le laissent glisser (dilatation différentielle verre / inox). Un cache clipsé ferme le U.",
+               "316L stainless U frame, welded bottom rail, top rail fitted after inserting the sandwich. Inside the U, on the side opposite the glazing, pressure spacers: two tapped pushers (right-hand and left-hand thread) spread apart by an opposite-thread rod — one turn of the rod moves both pushers together, turnbuckle principle. Tightening them presses the sandwich against the opposite flange and compresses the seal down to the inner frame stop. Thin soft strips wedge the glass and let it slide (differential expansion glass / stainless). A clip-on cover closes the U.",
+               "Kader in inox 316L U-profiel, gelaste onderregel, bovenregel aangebracht na het inschuiven van de sandwich. In het U-profiel, aan de zijde tegenover de beglazing, drukafstandhouders: twee getapte drukstukken (rechtse en linkse draad) uit elkaar gedreven door een stang met tegengestelde schroefdraad — één slag van de stang verplaatst beide drukstukken samen, het principe van een spanschroef. Het aanspannen drukt de sandwich tegen de tegenoverliggende flens en drukt de dichting samen tot aan de aanslag van het binnenkader. Dunne soepele banden zetten het glas vast en laten het glijden (verschil in uitzetting glas / inox). Een klikkap sluit het U-profiel af.",
+               "Rahmen aus Edelstahl 316L U-Profil, untere Traverse geschweißt, obere Traverse nach dem Einschieben des Sandwichs angesetzt. Im U, auf der der Verglasung gegenüberliegenden Seite, Druckdistanzstücke: zwei Gewindedruckstücke (Rechts- und Linksgewinde), auseinandergedrückt von einer Stange mit gegenläufigem Gewinde — eine Umdrehung bewegt beide Druckstücke zugleich, Spannschloss-Prinzip. Ihr Anziehen drückt das Sandwich gegen den gegenüberliegenden Schenkel und presst die Dichtung bis zum Anschlag des Innenrahmens. Dünne weiche Bänder fixieren das Glas und lassen es gleiten (unterschiedliche Ausdehnung Glas / Edelstahl). Eine Clipabdeckung schließt das U."),
+       pourquoi:L("Les montants sont scellés ≈ 500 mm dans le socle de 6,7 t : la tenue au vent vient de l'encastrement, pas des angles du cadre. La triangulation par les verres suffit à rendre l'ensemble stable.",
+                  "The uprights are cast ≈ 500 mm into the 6.7 t base: wind resistance comes from the embedment, not from the frame corners. Bracing by the glass panes is enough to make the whole stable.",
+                  "De stijlen zijn ≈ 500 mm in de sokkel van 6,7 t ingestort: de windweerstand komt van de inklemming, niet van de hoeken van het kader. De schoring door de glazen volstaat om het geheel stabiel te maken.",
+                  "Die Pfosten sind ≈ 500 mm im 6,7 t schweren Sockel eingelassen: Die Windstabilität kommt aus der Einspannung, nicht aus den Rahmenecken. Die Aussteifung durch die Gläser genügt für die Stabilität.")},
+      {id:"elevation", titre:L("Élévation","Elevation","Aanzicht","Ansicht"), img:"img/fig1_elevation.png",
+       texte:L("Cotes en mm. Le profil 80 × 40 est le schéma de principe ; il peut être porté à 100 × 40 si le calcul au vent l'exige, mais l'artiste préfère rester dans des dimensions discrètes.",
+               "Dimensions in mm. The 80 × 40 profile is the principle scheme; it can be increased to 100 × 40 if the wind calculation requires it, but the artist prefers discreet dimensions.",
+               "Maten in mm. Het profiel 80 × 40 is het principeschema; het kan tot 100 × 40 worden vergroot als de windberekening dat vereist, maar de kunstenaar verkiest discrete afmetingen.",
+               "Maße in mm. Das Profil 80 × 40 ist das Prinzipschema; es kann auf 100 × 40 vergrößert werden, wenn die Windberechnung es verlangt, aber die Künstlerin bevorzugt diskrete Abmessungen.")}
+    ]
+  },
 
-  // ---- Montage -------------------------------------------------------------
   montage: {
-    img: "img/fig5_montage.png",
-    etapes: [
-      "En atelier, à plat sur table : premier verre, cadre de positionnement collé, joint tubulaire dans son logement, plaque lenticulaire déposée libre, second verre.",
-      "Le sandwich est glissé dans les U des montants et de la traverse basse ; la traverse haute est fixée pour fermer le cadre.",
-      "Serrage progressif des entretoises, en croix, jusqu'à la butée du cadre intérieur — pression homogène sur tout le périmètre.",
-      "Balayage à l'air sec, raccordement de la poche d'équilibrage, contrôle d'étanchéité, pose des caches.",
-      "Transport vertical, scellement des montants dans les réservations 50 × 110 du socle."
+    titre: L("Montage et pose","Assembly and installation","Montage en plaatsing","Montage und Einbau"),
+    img:"img/fig5_montage.png",
+    etapes:[
+      L("En atelier, à plat sur table : premier verre, cadre de positionnement collé, joint tubulaire dans son logement, plaque lenticulaire déposée libre, second verre.","In the workshop, flat on a table: first pane, bonded positioning frame, tubular seal in its seat, lenticular sheet laid free, second pane.","In het atelier, plat op tafel: eerste glas, gelijmd positioneerkader, buisvormige dichting in haar zitting, lenticulaire plaat vrij neergelegd, tweede glas.","In der Werkstatt, flach auf dem Tisch: erstes Glas, geklebter Positionierrahmen, Schlauchdichtung in ihrem Sitz, Lentikularplatte frei aufgelegt, zweites Glas."),
+      L("Le sandwich est glissé dans les U des montants et de la traverse basse ; la traverse haute est fixée pour fermer le cadre.","The sandwich is slid into the U of the uprights and the bottom rail; the top rail is fixed to close the frame.","De sandwich wordt in de U-profielen van de stijlen en de onderregel geschoven; de bovenregel wordt bevestigd om het kader te sluiten.","Das Sandwich wird in die U-Profile der Pfosten und der unteren Traverse geschoben; die obere Traverse wird zum Schließen des Rahmens befestigt."),
+      L("Serrage progressif des entretoises, en croix, jusqu'à la butée du cadre intérieur — pression homogène sur tout le périmètre.","Progressive cross-pattern tightening of the spacers down to the inner frame stop — even pressure all round.","Geleidelijk kruislings aanspannen van de afstandhouders tot aan de aanslag van het binnenkader — gelijkmatige druk over de hele omtrek.","Schrittweises Anziehen der Distanzstücke über Kreuz bis zum Anschlag des Innenrahmens — gleichmäßiger Druck am ganzen Umfang."),
+      L("Balayage à l'air sec, raccordement de la poche d'équilibrage, contrôle d'étanchéité, pose des caches.","Dry-air purge, connection of the balancing bag, leak check, fitting of the covers.","Spoeling met droge lucht, aansluiting van de vereffeningszak, dichtheidscontrole, plaatsing van de kappen.","Trockenluftspülung, Anschluss des Ausgleichsbeutels, Dichtheitsprüfung, Anbringen der Abdeckungen."),
+      L("Transport vertical, scellement des montants dans les réservations 50 × 110 du socle.","Vertical transport, casting of the uprights into the 50 × 110 recesses of the base.","Verticaal transport, instorten van de stijlen in de uitsparingen 50 × 110 van de sokkel.","Vertikaler Transport, Eingießen der Pfosten in die Aussparungen 50 × 110 des Sockels.")
     ],
-    unique: "Il ne s'agit pas d'un produit à industrialiser mais d'une pièce unique, qui peut rester artisanale. La mise en œuvre est fastidieuse, mais ce n'est pas un handicap pour un exemplaire. En contrepartie : démontable sur place, intérieur accessible en cas de défaut, lenticulaire remplaçable à moindre frais, maintenance préventive sans démontage (dessiccant, ré-injection d'air sec ou de biocide)."
+    unique: L("Il ne s'agit pas d'un produit à industrialiser mais d'une pièce unique, qui peut rester artisanale. La mise en œuvre est fastidieuse, mais ce n'est pas un handicap pour un exemplaire. En contrepartie : démontable sur place, intérieur accessible en cas de défaut, lenticulaire remplaçable à moindre frais, maintenance préventive sans démontage (dessiccant, ré-injection d'air sec ou de biocide).",
+               "This is not a product to be industrialised but a single piece, which may remain artisanal. The process is laborious, but that is no handicap for one unit. In return: demountable on site, interior accessible in case of a defect, lenticular sheet replaceable at low cost, preventive maintenance without dismantling (desiccant, re-injection of dry air or biocide).",
+               "Het gaat niet om een te industrialiseren product maar om een uniek stuk, dat ambachtelijk mag blijven. De uitvoering is omslachtig, maar dat is geen nadeel voor één exemplaar. Daartegenover: ter plaatse demonteerbaar, binnenkant toegankelijk bij een defect, lenticulaire plaat goedkoop vervangbaar, preventief onderhoud zonder demontage (droogmiddel, opnieuw inbrengen van droge lucht of biocide).",
+               "Es handelt sich nicht um ein zu industrialisierendes Produkt, sondern um ein Einzelstück, das handwerklich bleiben darf. Die Ausführung ist aufwendig, aber für ein Exemplar kein Nachteil. Dafür: vor Ort demontierbar, Inneres bei einem Defekt zugänglich, Lentikularplatte kostengünstig austauschbar, vorbeugende Wartung ohne Demontage (Trockenmittel, erneutes Einblasen von Trockenluft oder Biozid).")
   },
 
-  // ---- Fournitures repérées ------------------------------------------------
-  fournitures: [
-    {
-      groupe: "Profil U inox",
-      items: [
-        { nom: "Pliage sur mesure 316L 3 mm", detail: "La voie recommandée : un simple U 80 × 40 (ou 100 × 40) plié chez le tôlier qui fera le châssis. Permet de choisir librement la hauteur d'âme.", statut: "recommandé" },
-        { nom: "Voss Inox — U plié 40×80×40×3, 1.4301, 6 m, 3,55 kg/m", detail: "Sur stock, mais en 304 : à réserver à un prototype d'atelier, pas à la pièce définitive.", url: "https://www.voss-edelstahl.com/online/fr/Acier-Inox/Profil-s-U/pli/", ref: "V0011309 (3 mm) · V0011310 (4 mm)" },
-        { nom: "Atinox (Nazareth, BE) — profils U inox de stock, 316L sur demande", detail: "Fournisseur belge à consulter en premier pour une barre 316L.", url: "https://www.atinox.fr/rvs-produits/profil-u-inox-lamine-atinox-sa-304l-316l-sur-demander/" },
-        { nom: "Montanstahl — UPN inox 304 / 316L, dimensions non standard sur demande", detail: "Profils soudés laser ; solution si l'on veut un profil épais, plus coûteuse.", url: "https://www.montanstahl.com/fr/produits/profils-marchands-et-barres-polies-en-acier-inoxydable/profils-u-en-acier-inoxydable/" }
-      ]
-    },
-    {
-      groupe: "Écarteurs à pas contraires (accastillage garde-corps câbles, inox 316)",
-      items: [
-        { nom: "Goujon double filet droite/gauche M6, 65 mm, inox 316", detail: "La tige de l'entretoise telle que dessinée : à monter entre deux poussoirs taraudés (un droit, un gauche), avec un méplat ou six pans usiné au centre. Un tour = 2 mm d'écartement.", url: "https://www.inoxdesign.fr/goujon-filete-m6-droite-gauche-pour-tendeur-cable-inox.html", statut: "recommandé" },
-        { nom: "Tige filetée double pas M6 / M8, 65 mm, inox A4", detail: "Équivalent, en M8 pour plus de raideur.", url: "https://www.esse.fr/tiges-filetees/4034-tige-filetee-inox-double-pas-droite-gauche-m6-ou-m8.html" },
-        { nom: "Tiges filetées 50 mm, pas droit ou pas gauche, M6 / M8, inox A4", detail: "Variante : deux tiges vissées à demeure dans les poussoirs et un écrou central tournant.", url: "https://esse.fr/visserie-inox/4132-tige-filetee-inox-316-a4-pas-droit-ou-gauche-m6-m8.html" },
-        { nom: "Corps de tendeur à filetages intérieurs G/D — M6 92 mm Ø10, M8 112 mm Ø13,5", detail: "La variante « tige avec trou » ; trop long pour l'espace libre du U (≈ 45 mm) sans recoupe.", url: "https://www.rollingcenter-france.fr/cables-et-filets-inox/1252-tendeur-inox316-tar-drt-gch-m6x30-r5940006.html" }
-      ]
-    }
-  ],
-
-  // ---- Profil et vent --------------------------------------------------------
   vent: {
-    intro: "Prédimensionnement du 25-09-26 pour un vent de 220 km/h (61 m/s, q = 2,3 kPa, cf = 1,8 panneau isolé) : effort sur l'écran 9,6 kN à 0,66 m, soit 6,4 kNm, 3,2 kNm par montant. Flèche en tête 7 mm avec le U de 5 mm. À confirmer par le bureau d'ossature.",
-    profils: [
-      { profil: "U 80×40×4 plié 316L", w: "14,7", kg: "4,8", sigma: "216 MPa (limite)", dispo: "pliage sur mesure" },
-      { profil: "U 80×40×5 soudé laser 316L", w: "17,7", kg: "5,9", sigma: "180 MPa (OK, 20 % de marge)", dispo: "sur mesure — retenu" },
-      { profil: "UPN 80 inox (80×45×6/8)", w: "26,5", kg: "8,6", sigma: "120 MPa", dispo: "catalogue, plus lourd" },
-      { profil: "Tube 100×40×3 (maquette V00)", w: "—", kg: "—", sigma: "162 MPa", dispo: "référence Jacky" }
+    titre: L("Profil et prise au vent","Profile and wind load","Profiel en windbelasting","Profil und Windlast"),
+    sous: L("prédimensionnement 25-09-26","preliminary sizing 25-09-26","voordimensionering 25-09-26","Vorbemessung 25-09-26"),
+    intro: L("Prédimensionnement du 25-09-26 pour un vent de 220 km/h (61 m/s, q = 2,3 kPa, cf = 1,8 panneau isolé) : effort sur l'écran 9,6 kN à 0,66 m, soit 6,4 kNm, 3,2 kNm par montant. Flèche en tête 7 mm avec le U de 5 mm. À confirmer par le bureau d'ossature.",
+             "Preliminary sizing of 25-09-26 for a 220 km/h wind (61 m/s, q = 2.3 kPa, cf = 1.8 isolated panel): load on the screen 9.6 kN at 0.66 m, i.e. 6.4 kNm, 3.2 kNm per upright. Top deflection 7 mm with the 5 mm U. To be confirmed by the structural engineer.",
+             "Voordimensionering van 25-09-26 voor een wind van 220 km/u (61 m/s, q = 2,3 kPa, cf = 1,8 vrijstaand paneel): kracht op het scherm 9,6 kN op 0,66 m, dus 6,4 kNm, 3,2 kNm per stijl. Doorbuiging aan de top 7 mm met het U-profiel van 5 mm. Te bevestigen door het stabiliteitsbureau.",
+             "Vorbemessung vom 25-09-26 für Wind mit 220 km/h (61 m/s, q = 2,3 kPa, cf = 1,8 freistehende Tafel): Kraft auf den Schirm 9,6 kN in 0,66 m, also 6,4 kNm, 3,2 kNm je Pfosten. Kopfdurchbiegung 7 mm mit dem 5-mm-U. Vom Tragwerksplaner zu bestätigen."),
+    colonnes:[L("Profil","Profile","Profiel","Profil"), "W (cm³)", "kg/m", L("Contrainte","Stress","Spanning","Spannung"), L("Disponibilité","Availability","Beschikbaarheid","Verfügbarkeit")],
+    profils:[
+      [L("U 80×40×4 plié 316L","U 80×40×4 bent 316L","U 80×40×4 geplooid 316L","U 80×40×4 gekantet 316L"), "14,7", "4,8", L("216 MPa (limite)","216 MPa (limit)","216 MPa (grens)","216 MPa (Grenze)"), L("pliage sur mesure","custom bending","plooien op maat","Kantung nach Maß")],
+      [L("U 80×40×5 soudé laser 316L","U 80×40×5 laser-welded 316L","U 80×40×5 lasergelast 316L","U 80×40×5 lasergeschweißt 316L"), "17,7", "5,9", L("180 MPa (OK, 20 % de marge)","180 MPa (OK, 20 % margin)","180 MPa (OK, 20 % marge)","180 MPa (OK, 20 % Reserve)"), L("sur mesure — retenu","custom — selected","op maat — weerhouden","nach Maß — gewählt")],
+      [L("UPN 80 inox (80×45×6/8)","UPN 80 stainless (80×45×6/8)","UPN 80 inox (80×45×6/8)","UPN 80 Edelstahl (80×45×6/8)"), "26,5", "8,6", "120 MPa", L("catalogue, plus lourd","catalogue, heavier","catalogus, zwaarder","Katalog, schwerer")],
+      [L("Tube 100×40×3 (maquette V00)","Tube 100×40×3 (V00 model)","Buis 100×40×3 (V00-model)","Rohr 100×40×3 (V00-Modell)"), "—", "—", "162 MPa", L("référence Jacky","Jacky's reference","referentie Jacky","Referenz Jacky")]
     ],
-    conclusions: [
-      "Encastrement 500 mm : pression sur la pierre ≈ 1,7 MPa, négligeable pour du Comblanchien.",
-      "Bloc de 6,7 t : renversement 12,5 kNm contre 62 kNm stabilisant (sécurité 5) ; glissement 33 kN contre 14 kN. Le socle tient par sa masse.",
-      "Verre : un 55.2 recuit est à la limite (≈ 23 MPa) — prévoir un feuilleté trempé, 66.2 trempé ≈ 16 MPa.",
-      "Châssis v01 : hors tout 1 820 × 1 220, montants 1 720 dont 500 encastrés, réservation borgne 50 × 110 × 500, entraxe 1 780 (le plan V00 du socle, à 1 720, est à mettre à jour)."
+    conclusions:[
+      L("Encastrement 500 mm : pression sur la pierre ≈ 1,7 MPa, négligeable pour du Comblanchien.","500 mm embedment: pressure on the stone ≈ 1.7 MPa, negligible for Comblanchien.","Inklemming 500 mm: druk op de steen ≈ 1,7 MPa, verwaarloosbaar voor Comblanchien.","Einspannung 500 mm: Druck auf den Stein ≈ 1,7 MPa, für Comblanchien vernachlässigbar."),
+      L("Bloc de 6,7 t : renversement 12,5 kNm contre 62 kNm stabilisant (sécurité 5) ; glissement 33 kN contre 14 kN. Le socle tient par sa masse.","6.7 t block: overturning 12.5 kNm against 62 kNm stabilising (safety 5); sliding 33 kN against 14 kN. The base holds by its mass.","Blok van 6,7 t: kantelen 12,5 kNm tegenover 62 kNm stabiliserend (veiligheid 5); glijden 33 kN tegenover 14 kN. De sokkel houdt door zijn massa.","Block von 6,7 t: Kippen 12,5 kNm gegen 62 kNm stabilisierend (Sicherheit 5); Gleiten 33 kN gegen 14 kN. Der Sockel hält durch seine Masse."),
+      L("Verre : un 55.2 recuit est à la limite (≈ 23 MPa) — prévoir un feuilleté trempé, 66.2 trempé ≈ 16 MPa.","Glass: annealed 55.2 is at the limit (≈ 23 MPa) — plan a toughened laminate, toughened 66.2 ≈ 16 MPa.","Glas: een uitgegloeid 55.2 zit op de grens (≈ 23 MPa) — voorzie gehard gelaagd glas, gehard 66.2 ≈ 16 MPa.","Glas: ein entspanntes 55.2 liegt an der Grenze (≈ 23 MPa) — vorgespanntes Verbundglas vorsehen, 66.2 vorgespannt ≈ 16 MPa."),
+      L("Châssis v01 : hors tout 1 820 × 1 220, montants 1 720 dont 500 encastrés, réservation borgne 50 × 110 × 500, entraxe 1 780 (le plan V00 du socle, à 1 720, est à mettre à jour).","Frame v01: overall 1,820 × 1,220, uprights 1,720 including 500 embedded, blind recess 50 × 110 × 500, centre distance 1,780 (the base plan V00, at 1,720, is to be updated).","Kader v01: buitenmaat 1 820 × 1 220, stijlen 1 720 waarvan 500 ingestort, blinde uitsparing 50 × 110 × 500, hartafstand 1 780 (het sokkelplan V00, op 1 720, moet worden bijgewerkt).","Rahmen v01: Außenmaß 1 820 × 1 220, Pfosten 1 720, davon 500 eingelassen, Sackaussparung 50 × 110 × 500, Achsabstand 1 780 (der Sockelplan V00 mit 1 720 ist zu aktualisieren).")
     ],
-    imgs: ["img/chassis_v01_U80x40.png", "img/step_v00_vues.png"]
+    imgs:[{src:"img/chassis_v01_U80x40.png", leg:L("Châssis v01 U 80×40×5 — trois vues","Frame v01 U 80×40×5 — three views","Kader v01 U 80×40×5 — drie zichten","Rahmen v01 U 80×40×5 — drei Ansichten")},
+          {src:"img/step_v00_vues.png", leg:L("STEP « ecran v00 100x40x3 » de J. Miceli — trois vues","STEP “ecran v00 100x40x3” by J. Miceli — three views","STEP “ecran v00 100x40x3” van J. Miceli — drie zichten","STEP „ecran v00 100x40x3“ von J. Miceli — drei Ansichten")}]
   },
 
-  // ---- Points ouverts ------------------------------------------------------
-  ouverts: [
-    "Section du profil : U 80 × 40 × 5 retenu en prédimensionnement, à confirmer par le bureau d'ossature.",
-    "Verre : passer du 55.2 recuit à un feuilleté trempé (66.2) selon la note vent — à valider avec le vitrier et l'artiste (antireflet sur verre trempé).",
-    "Hauteur du cadre de positionnement à caler sur l'épaisseur réelle du lenticulaire et sur la compression du joint (≈ 30 % pour Ø10).",
-    "Matériau du cadre de positionnement et colle compatible PVB / PETG.",
-    "Passage étanche des deux tubes à travers le joint (traversée vulcanisée ou collée).",
-    "Choix du fluide de balayage (air sec, azote) et de l'agent biocide compatible PETG.",
-    "Emplacement de la poche d'équilibrage (montant creux ou réservation dans le socle) et accès pour l'entretien.",
-    "Poussoirs en inox 316 ou en polymère (POM / PE) pour éviter tout couple galvanique dans le U ; taraudage M6 pas à gauche à préciser à l'atelier.",
-    "Validation sur prototype grandeur réelle avant toute commande."
-  ],
+  fournitures: {
+    titre: L("Fournitures repérées","Identified supplies","Gevonden leveringen","Ermittelte Lieferungen"),
+    sous: L("recherche du 25-09-26","search of 25-09-26","zoektocht van 25-09-26","Recherche vom 25-09-26"),
+    lead: L("Profil et quincaillerie existent dans le commerce, en inox 316. Les liens renvoient aux fiches produits ; les prix sont à demander.","Profile and hardware are commercially available in 316 stainless. Links point to product sheets; prices on request.","Profiel en beslag zijn in de handel verkrijgbaar in inox 316. De links verwijzen naar productfiches; prijzen op aanvraag.","Profil und Beschläge sind im Handel in Edelstahl 316 erhältlich. Die Links führen zu Produktblättern; Preise auf Anfrage."),
+    lien: L("fiche produit ↗","product sheet ↗","productfiche ↗","Produktblatt ↗"),
+    groupes:[
+      {groupe:L("Profil U inox","Stainless U profile","Inox U-profiel","Edelstahl-U-Profil"), items:[
+        {nom:L("Pliage sur mesure 316L 3 mm","Custom bending 316L 3 mm","Plooien op maat 316L 3 mm","Kantung nach Maß 316L 3 mm"), detail:L("La voie recommandée : un simple U 80 × 40 (ou 100 × 40) plié chez le tôlier qui fera le châssis. Permet de choisir librement la hauteur d'âme.","The recommended route: a simple U 80 × 40 (or 100 × 40) bent by the sheet-metal shop making the frame. Lets the web height be chosen freely.","De aanbevolen weg: een eenvoudig U-profiel 80 × 40 (of 100 × 40) geplooid bij de plaatwerker die het kader maakt. Laat de lijfhoogte vrij kiezen.","Der empfohlene Weg: ein einfaches U 80 × 40 (oder 100 × 40), gekantet beim Blechbetrieb, der den Rahmen baut. Erlaubt freie Wahl der Steghöhe."), statut:L("recommandé","recommended","aanbevolen","empfohlen")},
+        {nom:L("Voss Inox — U plié 40×80×40×3, 1.4301, 6 m, 3,55 kg/m","Voss Inox — bent U 40×80×40×3, 1.4301, 6 m, 3.55 kg/m","Voss Inox — geplooid U 40×80×40×3, 1.4301, 6 m, 3,55 kg/m","Voss Edelstahl — gekantetes U 40×80×40×3, 1.4301, 6 m, 3,55 kg/m"), detail:L("Sur stock, mais en 304 : à réserver à un prototype d'atelier, pas à la pièce définitive.","In stock, but in 304: for a workshop prototype only, not for the final piece.","Op voorraad, maar in 304: enkel voor een atelierprototype, niet voor het definitieve stuk.","Ab Lager, aber in 304: nur für einen Werkstattprototyp, nicht für das endgültige Stück."), url:"https://www.voss-edelstahl.com/online/fr/Acier-Inox/Profil-s-U/pli/", ref:"V0011309 (3 mm) · V0011310 (4 mm)"},
+        {nom:L("Atinox (Nazareth, BE) — profils U inox de stock, 316L sur demande","Atinox (Nazareth, BE) — stock stainless U profiles, 316L on request","Atinox (Nazareth, BE) — inox U-profielen uit voorraad, 316L op aanvraag","Atinox (Nazareth, BE) — Edelstahl-U-Profile ab Lager, 316L auf Anfrage"), detail:L("Fournisseur belge à consulter en premier pour une barre 316L.","Belgian supplier to consult first for a 316L bar.","Belgische leverancier eerst te raadplegen voor een staaf 316L.","Belgischer Lieferant, zuerst für eine 316L-Stange anzufragen."), url:"https://www.atinox.fr/rvs-produits/profil-u-inox-lamine-atinox-sa-304l-316l-sur-demander/"},
+        {nom:L("Montanstahl — UPN inox 304 / 316L, dimensions non standard sur demande","Montanstahl — stainless UPN 304 / 316L, non-standard sizes on request","Montanstahl — inox UPN 304 / 316L, niet-standaard maten op aanvraag","Montanstahl — Edelstahl-UPN 304 / 316L, Sondermaße auf Anfrage"), detail:L("Profils soudés laser ; solution si l'on veut un profil épais, plus coûteuse.","Laser-welded profiles; the option for a thick profile, more expensive.","Lasergelaste profielen; de oplossing voor een dik profiel, duurder.","Lasergeschweißte Profile; Lösung für ein dickes Profil, teurer."), url:"https://www.montanstahl.com/fr/produits/profils-marchands-et-barres-polies-en-acier-inoxydable/profils-u-en-acier-inoxydable/"}
+      ]},
+      {groupe:L("Écarteurs à pas contraires (accastillage garde-corps câbles, inox 316)","Opposite-thread spreaders (cable-railing hardware, 316 stainless)","Spreiders met tegengestelde draad (kabelbalustradebeslag, inox 316)","Spreizer mit gegenläufigem Gewinde (Seilgeländer-Beschläge, Edelstahl 316)"), items:[
+        {nom:L("Goujon double filet droite/gauche M6, 65 mm, inox 316","Double-thread stud right/left M6, 65 mm, 316 stainless","Dubbeldraads tapeind rechts/links M6, 65 mm, inox 316","Doppelgewindebolzen rechts/links M6, 65 mm, Edelstahl 316"), detail:L("La tige de l'entretoise telle que dessinée : à monter entre deux poussoirs taraudés (un droit, un gauche), avec un méplat ou six pans usiné au centre. Un tour = 2 mm d'écartement.","The spacer rod as drawn: to be fitted between two tapped pushers (one right-hand, one left-hand), with a flat or hexagon machined in the middle. One turn = 2 mm of spread.","De stang van de afstandhouder zoals getekend: te monteren tussen twee getapte drukstukken (één rechts, één links), met een vlak of zeskant in het midden. Eén slag = 2 mm spreiding.","Die Distanzstange wie gezeichnet: zwischen zwei Gewindedruckstücken (eines rechts, eines links) zu montieren, mit Fläche oder Sechskant in der Mitte. Eine Umdrehung = 2 mm Spreizung."), url:"https://www.inoxdesign.fr/goujon-filete-m6-droite-gauche-pour-tendeur-cable-inox.html", statut:L("recommandé","recommended","aanbevolen","empfohlen")},
+        {nom:L("Tige filetée double pas M6 / M8, 65 mm, inox A4","Double-pitch threaded rod M6 / M8, 65 mm, A4 stainless","Draadstang dubbele spoed M6 / M8, 65 mm, inox A4","Gewindestange Doppelgewinde M6 / M8, 65 mm, Edelstahl A4"), detail:L("Équivalent, en M8 pour plus de raideur.","Equivalent, in M8 for more stiffness.","Gelijkwaardig, in M8 voor meer stijfheid.","Gleichwertig, in M8 für mehr Steifigkeit."), url:"https://www.esse.fr/tiges-filetees/4034-tige-filetee-inox-double-pas-droite-gauche-m6-ou-m8.html"},
+        {nom:L("Tiges filetées 50 mm, pas droit ou pas gauche, M6 / M8, inox A4","Threaded rods 50 mm, right- or left-hand thread, M6 / M8, A4 stainless","Draadstangen 50 mm, rechtse of linkse draad, M6 / M8, inox A4","Gewindestangen 50 mm, Rechts- oder Linksgewinde, M6 / M8, Edelstahl A4"), detail:L("Variante : deux tiges vissées à demeure dans les poussoirs et un écrou central tournant.","Variant: two rods permanently screwed into the pushers and a rotating central nut.","Variant: twee stangen vast in de drukstukken geschroefd en een draaiende centrale moer.","Variante: zwei fest in die Druckstücke geschraubte Stangen und eine drehbare Mittelmutter."), url:"https://esse.fr/visserie-inox/4132-tige-filetee-inox-316-a4-pas-droit-ou-gauche-m6-m8.html"},
+        {nom:L("Corps de tendeur à filetages intérieurs G/D — M6 92 mm Ø10, M8 112 mm Ø13,5","Turnbuckle body with internal L/R threads — M6 92 mm Ø10, M8 112 mm Ø13.5","Spanschroeflichaam met binnendraad L/R — M6 92 mm Ø10, M8 112 mm Ø13,5","Spannschlosskörper mit Innengewinde L/R — M6 92 mm Ø10, M8 112 mm Ø13,5"), detail:L("La variante « tige avec trou » ; trop long pour l'espace libre du U (≈ 45 mm) sans recoupe.","The “rod with hole” variant; too long for the free space in the U (≈ 45 mm) without cutting.","De variant “stang met gat”; te lang voor de vrije ruimte in het U-profiel (≈ 45 mm) zonder inkorten.","Die Variante „Stange mit Loch“; ohne Kürzen zu lang für den freien Raum im U (≈ 45 mm)."), url:"https://www.rollingcenter-france.fr/cables-et-filets-inox/1252-tendeur-inox316-tar-drt-gch-m6x30-r5940006.html"}
+      ]}
+    ]
+  },
 
-  // ---- Téléchargements -----------------------------------------------------
-  docs: [
-    { titre: "Note de principe — vitrine lenticulaire v01 (PDF, 7 p.)", fichier: "docs/note_vitrine_lenticulaire_v01.pdf" },
-    { titre: "Ensemble base + écran + cristaux (v01 260922)", fichier: "docs/base_cplt_260922.pdf" },
-    { titre: "Base mono bloc V00 — plan coté (J. Miceli, 22-09-26)", fichier: "docs/base_mono_bloc_V00.pdf" },
-    { titre: "STEP — ecran v00 100x40x3 (J. Miceli, Inventor, 24-09-26)", fichier: "docs/cao/ecran_v00_100x40x3.stp" },
-    { titre: "STL — châssis v01 U 80×40×5 (25-09-26)", fichier: "docs/cao/ecran_v01_U80x40.stl" }
-  ],
+  ouverts: {
+    titre: L("Points ouverts","Open points","Open punten","Offene Punkte"),
+    items:[
+      L("Section du profil : U 80 × 40 × 5 retenu en prédimensionnement, à confirmer par le bureau d'ossature.","Profile section: U 80 × 40 × 5 selected in preliminary sizing, to be confirmed by the structural engineer.","Profielsectie: U 80 × 40 × 5 weerhouden in de voordimensionering, te bevestigen door het stabiliteitsbureau.","Profilquerschnitt: U 80 × 40 × 5 in der Vorbemessung gewählt, vom Tragwerksplaner zu bestätigen."),
+      L("Verre : passer du 55.2 recuit à un feuilleté trempé (66.2) selon la note vent — à valider avec le vitrier et l'artiste (antireflet sur verre trempé).","Glass: move from annealed 55.2 to a toughened laminate (66.2) as per the wind note — to be validated with the glazier and the artist (anti-reflective on toughened glass).","Glas: van uitgegloeid 55.2 naar gehard gelaagd glas (66.2) volgens de windnota — te valideren met de glazenmaker en de kunstenaar (antireflectie op gehard glas).","Glas: von entspanntem 55.2 zu vorgespanntem Verbundglas (66.2) gemäß Windnotiz — mit Glaser und Künstlerin zu validieren (Entspiegelung auf vorgespanntem Glas)."),
+      L("Hauteur du cadre de positionnement à caler sur l'épaisseur réelle du lenticulaire et sur la compression du joint (≈ 30 % pour Ø10).","Positioning-frame height to be set on the actual lenticular thickness and on seal compression (≈ 30 % for Ø10).","Hoogte van het positioneerkader af te stemmen op de werkelijke dikte van de lenticulaire plaat en op de samendrukking van de dichting (≈ 30 % voor Ø10).","Höhe des Positionierrahmens an die tatsächliche Lentikulardicke und die Dichtungsverpressung (≈ 30 % bei Ø10) anzupassen."),
+      L("Matériau du cadre de positionnement et colle compatible PVB / PETG.","Positioning-frame material and adhesive compatible with PVB / PETG.","Materiaal van het positioneerkader en lijm compatibel met PVB / PETG.","Material des Positionierrahmens und Klebstoff, verträglich mit PVB / PETG."),
+      L("Passage étanche des deux tubes à travers le joint (traversée vulcanisée ou collée).","Tight passage of the two tubes through the seal (vulcanised or bonded feed-through).","Dichte doorvoer van de twee buisjes door de dichting (gevulkaniseerde of gelijmde doorvoer).","Dichte Durchführung der beiden Röhrchen durch die Dichtung (vulkanisiert oder verklebt)."),
+      L("Choix du fluide de balayage (air sec, azote) et de l'agent biocide compatible PETG.","Choice of purge fluid (dry air, nitrogen) and of a PETG-compatible biocide.","Keuze van het spoelmedium (droge lucht, stikstof) en van een PETG-compatibel biocide.","Wahl des Spülmediums (Trockenluft, Stickstoff) und eines PETG-verträglichen Biozids."),
+      L("Emplacement de la poche d'équilibrage (montant creux ou réservation dans le socle) et accès pour l'entretien.","Location of the balancing bag (hollow upright or recess in the base) and access for maintenance.","Plaats van de vereffeningszak (holle stijl of uitsparing in de sokkel) en toegang voor onderhoud.","Lage des Ausgleichsbeutels (hohler Pfosten oder Aussparung im Sockel) und Wartungszugang."),
+      L("Poussoirs en inox 316 ou en polymère (POM / PE) pour éviter tout couple galvanique dans le U ; taraudage M6 pas à gauche à préciser à l'atelier.","Pushers in 316 stainless or polymer (POM / PE) to avoid any galvanic couple in the U; M6 left-hand tapping to be specified to the workshop.","Drukstukken in inox 316 of polymeer (POM / PE) om elk galvanisch koppel in het U-profiel te vermijden; M6 linkse tap te specificeren aan het atelier.","Druckstücke aus Edelstahl 316 oder Polymer (POM / PE), um jedes galvanische Element im U zu vermeiden; M6-Linksgewinde der Werkstatt anzugeben."),
+      L("Validation sur prototype grandeur réelle avant toute commande.","Validation on a full-scale prototype before any order.","Validatie op een prototype op ware grootte vóór elke bestelling.","Validierung an einem Prototyp in Originalgröße vor jeder Bestellung.")
+    ]
+  },
 
-  // ---- Prompt CAO ------------------------------------------------------------
-  prompt: `Contexte. Œuvre d'art permanente en front de mer (Westende, Belgique). Modéliser l'assemblage d'une vitrine lenticulaire : un sandwich verre / lenticulaire / verre de 1800 × 1200 mm maintenu par un châssis inox en U, encastré 500 mm dans un socle en pierre. Livrable 1 : planche PDF A3 (élévation, vue latérale, coupe horizontale dans un montant échelle 1:1, coupe verticale dans la traverse basse, éclaté d'assemblage, nomenclature). Livrable 2 : assemblage STEP AP214 paramétrique, une pièce par composant, cotes en mm.
+  cao: {
+    titre: L("Prompt pour la mise au net CAO (planche PDF, puis STEP)","Prompt for the CAD fair copy (PDF sheet, then STEP)","Prompt voor de CAD-uitwerking (PDF-blad, daarna STEP)","Prompt für die CAD-Reinzeichnung (PDF-Blatt, dann STEP)"),
+    note: L("Le prompt est rédigé en français, langue de travail de l'atelier.","The prompt is written in French, the workshop's working language.","De prompt is in het Frans opgesteld, de werktaal van het atelier.","Der Prompt ist auf Französisch verfasst, der Arbeitssprache der Werkstatt."),
+    texte: `Contexte. Œuvre d'art permanente en front de mer (Westende, Belgique). Modéliser l'assemblage d'une vitrine lenticulaire : un sandwich verre / lenticulaire / verre de 1800 × 1200 mm maintenu par un châssis inox en U, encastré 500 mm dans un socle en pierre. Livrable 1 : planche PDF A3 (élévation, vue latérale, coupe horizontale dans un montant échelle 1:1, coupe verticale dans la traverse basse, éclaté d'assemblage, nomenclature). Livrable 2 : assemblage STEP AP214 paramétrique, une pièce par composant, cotes en mm.
 
 Composants et cotes.
 1. Verre feuilleté 55.2 (5 + 0,76 + 5 = 10,76 mm), 1800 × 1200, × 2, antireflet, sans perçage.
@@ -142,13 +196,42 @@ Composants et cotes.
 9. Circuit d'air : deux tubes Ø4 partant des traversées du joint, cheminant dans le U, jusqu'à une poche souple (volume de 1 L) et une cartouche de dessiccant logées dans le montant droit sous le niveau du socle.
 10. Socle : représenter seulement une portion du monobloc (2750 × 527 × 400 mm) avec deux réservations 50 × 110 × 500 mm pour les montants, entraxe 1760 mm.
 
-Règles. Le sandwich est plaqué contre l'aile du U côté extérieur, les entretoises côté intérieur. Aucun collage entre lenticulaire et verre, aucun perçage du verre. Cotes fonctionnelles à faire apparaître : 1800, 1200, 500, 80 (ou 100), 40, épaisseur sandwich ≈ 29. Nommer les pièces en français. Produire d'abord la planche PDF pour validation, puis le STEP.`,
+Règles. Le sandwich est plaqué contre l'aile du U côté extérieur, les entretoises côté intérieur. Aucun collage entre lenticulaire et verre, aucun perçage du verre. Cotes fonctionnelles à faire apparaître : 1800, 1200, 500, 80 (ou 100), 40, épaisseur sandwich ≈ 29. Nommer les pièces en français. Produire d'abord la planche PDF pour validation, puis le STEP.`
+  },
 
-  // ---- Journal -------------------------------------------------------------
+  documents: [
+    {groupe: L("Note de principe","Principle note","Principenota","Grundsatznotiz"), items:[
+      {id:"LV-VL-NOTE-01", rev:"1", date:"24-09-26", statut:"ESQUISSE", pages:7, thumb:"docs/thumbs/note_v01.jpg", titre:L("Note de principe — vitrine lenticulaire v01 (FR)","Principle note — lenticular showcase v01 (French)","Principenota — lenticulaire vitrine v01 (Frans)","Grundsatznotiz — Lentikular-Vitrine v01 (Französisch)"), files:[{fmt:"PDF", u:"docs/note_vitrine_lenticulaire_v01.pdf"}]},
+      {id:"LV-VL-VENT-01", rev:"1", date:"25-09-26", statut:"ÉTUDE", titre:L("Note profil et prise au vent 220 km/h, châssis v01 (Markdown, FR)","Profile and 220 km/h wind-load note, frame v01 (Markdown, French)","Nota profiel en windbelasting 220 km/u, kader v01 (Markdown, Frans)","Notiz Profil und Windlast 220 km/h, Rahmen v01 (Markdown, Französisch)"), files:[{fmt:"MD", u:"docs/NOTE_chassis_v01_vent.md"}]}
+    ]},
+    {groupe: L("Schémas de principe","Principle drawings","Principeschema's","Prinzipskizzen"), items:[
+      {id:"LV-VL-FIG-01", rev:"1", date:"24-09-26", statut:"ESQUISSE", thumb:"docs/thumbs/fig1_elevation.jpg", titre:L("Élévation, cotes en mm","Elevation, dimensions in mm","Aanzicht, maten in mm","Ansicht, Maße in mm"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-FIG-01_elevation.pdf"},{fmt:"PNG", u:"img/fig1_elevation.png"}]},
+      {id:"LV-VL-FIG-02", rev:"1", date:"24-09-26", statut:"ESQUISSE", thumb:"docs/thumbs/fig2_coupe_montant.jpg", titre:L("Coupe horizontale dans un montant : U, entretoise, joint, sandwich","Horizontal section through an upright: U, spacer, seal, sandwich","Horizontale doorsnede door een stijl: U, afstandhouder, dichting, sandwich","Horizontalschnitt durch einen Pfosten: U, Distanzstück, Dichtung, Sandwich"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-FIG-02_coupe_montant.pdf"},{fmt:"PNG", u:"img/fig2_coupe_montant.png"}]},
+      {id:"LV-VL-FIG-03", rev:"1", date:"24-09-26", statut:"ESQUISSE", thumb:"docs/thumbs/fig3_sandwich.jpg", titre:L("Le sandwich verre / lenticulaire / verre","The glass / lenticular / glass sandwich","De sandwich glas / lenticulair / glas","Das Sandwich Glas / Lentikular / Glas"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-FIG-03_sandwich.pdf"},{fmt:"PNG", u:"img/fig3_sandwich.png"}]},
+      {id:"LV-VL-FIG-04", rev:"1", date:"24-09-26", statut:"ESQUISSE", thumb:"docs/thumbs/fig4_air_sec.jpg", titre:L("Circuit d'air sec, poche d'équilibrage et dessiccant","Dry-air circuit, balancing bag and desiccant","Droge-luchtcircuit, vereffeningszak en droogmiddel","Trockenluftkreislauf, Ausgleichsbeutel und Trockenmittel"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-FIG-04_air_sec.pdf"},{fmt:"PNG", u:"img/fig4_air_sec.png"}]},
+      {id:"LV-VL-FIG-05", rev:"1", date:"24-09-26", statut:"ESQUISSE", thumb:"docs/thumbs/fig5_montage.jpg", titre:L("Séquence de montage","Assembly sequence","Montagevolgorde","Montageablauf"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-FIG-05_montage.pdf"},{fmt:"PNG", u:"img/fig5_montage.png"}]},
+      {id:"LV-VL-CRQ-01", rev:"1", date:"24-09-26", statut:"ESQUISSE", thumb:"docs/thumbs/croquis.jpg", titre:L("Croquis de principe d'origine : coupe dans le montant","Original principle sketch: section through the upright","Oorspronkelijke principeschets: doorsnede door de stijl","Ursprüngliche Prinzipskizze: Schnitt durch den Pfosten"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-CRQ-01_croquis.pdf"},{fmt:"JPEG", u:"img/croquis_260924.jpeg"}]}
+    ]},
+    {groupe: L("Châssis — CAO","Frame — CAD","Kader — CAD","Rahmen — CAD"), items:[
+      {id:"LV-VL-CH-01", rev:"1", date:"25-09-26", statut:"ÉTUDE", thumb:"docs/thumbs/chassis_v01.jpg", titre:L("Châssis v01 U 80×40×5 316L — trois vues, hors tout 1 820 × 1 220, montants 1 720","Frame v01 U 80×40×5 316L — three views, overall 1,820 × 1,220, uprights 1,720","Kader v01 U 80×40×5 316L — drie zichten, buitenmaat 1 820 × 1 220, stijlen 1 720","Rahmen v01 U 80×40×5 316L — drei Ansichten, Außenmaß 1 820 × 1 220, Pfosten 1 720"), files:[{fmt:"PDF", u:"docs/pdf/LV-VL-CH-01_chassis_v01.pdf"},{fmt:"PNG", u:"img/chassis_v01_U80x40.png"},{fmt:"STL", u:"docs/cao/ecran_v01_U80x40.stl"}]},
+      {id:"LV-VL-CAO-00", rev:"0", date:"24-09-26", statut:"ÉTUDE", thumb:"docs/thumbs/step_v00.jpg", auteur:L("J. Miceli, Inventor","J. Miceli, Inventor","J. Miceli, Inventor","J. Miceli, Inventor"), titre:L("STEP « ecran v00 100x40x3 » — châssis tube 100×40×3, trois vues filaires","STEP “ecran v00 100x40x3” — 100×40×3 tube frame, three wireframe views","STEP “ecran v00 100x40x3” — buiskader 100×40×3, drie draadzichten","STEP „ecran v00 100x40x3“ — Rohrrahmen 100×40×3, drei Drahtansichten"), files:[{fmt:"STEP", u:"docs/cao/ecran_v00_100x40x3.stp"},{fmt:"PDF", u:"docs/pdf/LV-VL-CAO-00_step_v00_vues.pdf"},{fmt:"PNG", u:"img/step_v00_vues.png"}]}
+    ]},
+    {groupe: L("Plans du socle (dossier base)","Base plans (base file)","Sokkelplannen (dossier sokkel)","Sockelpläne (Dossier Sockel)"), items:[
+      {id:"LV-BA-PL-00", rev:"0", date:"22-09-26", statut:"ÉTUDE", pages:1, thumb:"docs/thumbs/base_V00.jpg", auteur:L("J. Miceli","J. Miceli","J. Miceli","J. Miceli"), titre:L("Base mono bloc V00 — plan coté","Monolithic base V00 — dimensioned plan","Monoliet sokkel V00 — gemaatvoerd plan","Monolithischer Sockel V00 — bemaßter Plan"), files:[{fmt:"PDF", u:"docs/base_mono_bloc_V00.pdf"},{fmt:"PNG", u:"docs/png/base_mono_bloc_V00.png"}]},
+      {id:"LV-BA-PL-01", rev:"1", date:"22-09-26", statut:"ÉTUDE", pages:1, thumb:"docs/thumbs/base_cplt.jpg", auteur:L("J. Miceli","J. Miceli","J. Miceli","J. Miceli"), titre:L("Ensemble base + écran + cristaux (v01 260922)","Base + screen + crystals assembly (v01 260922)","Geheel sokkel + scherm + kristallen (v01 260922)","Gesamtansicht Sockel + Schirm + Kristalle (v01 260922)"), files:[{fmt:"PDF", u:"docs/base_cplt_260922.pdf"},{fmt:"PNG", u:"docs/png/base_cplt_260922.png"}]}
+    ]},
+    {groupe: L("Dossiers liés","Related files","Verwante dossiers","Verwandte Dossiers"), items:[
+      {titre:L("Dossier du socle monobloc (filières, ateliers, maquette 3D)","Monolithic base file (routes, workshops, 3D model)","Dossier monoliet sokkel (kanalen, ateliers, 3D-model)","Dossier monolithischer Sockel (Wege, Werkstätten, 3D-Modell)"), files:[{fmt:"base-les-veilleurs.vercel.app", u:"https://base-les-veilleurs.vercel.app/?code=EVA", ext:true}]},
+      {titre:L("Dossier de la vitrine « aquarium » des cristaux","Crystal “aquarium” showcase file","Dossier kristallen “aquarium”-vitrine","Dossier Kristall-Vitrine „Aquarium“"), files:[{fmt:"aquarium-k9.vercel.app", u:"https://aquarium-k9.vercel.app/?code=EVA", ext:true}]},
+      {titre:L("Site principal du projet (code EVA)","Main project site (code EVA)","Hoofdsite van het project (code EVA)","Hauptseite des Projekts (Code EVA)"), files:[{fmt:"veilleurs-xi.vercel.app", u:"https://veilleurs-xi.vercel.app", ext:true}]}
+    ]}
+  ],
+
   journal: [
-    { date: "24-09-26", texte: "Principe constructif dicté par P. L'Hoest ; croquis de la coupe dans le montant ; note v01 produite." },
-    { date: "24-09-26", texte: "Corrections : tubes d'air à travers le joint (plus de perçage du verre), lenticulaire 6 mm, poussoirs taraudés à pas contraires." },
-    { date: "25-09-26", texte: "Recherche fournitures : U inox plié 80×40×3, écarteurs double filet inox 316." },
-    { date: "25-09-26", texte: "STEP de Jacky (ecran v00 100x40x3) reçu et analysé ; châssis v01 U 80×40×5 et note vent 220 km/h ; mise en ligne du site, v0.1." }
+    {d:"24-09-26", t:L("Principe constructif dicté ; croquis de la coupe dans le montant ; note v01 produite.","Construction principle dictated; sketch of the section through the upright; note v01 produced.","Constructieprincipe gedicteerd; schets van de doorsnede door de stijl; nota v01 opgesteld.","Konstruktionsprinzip diktiert; Skizze des Schnitts durch den Pfosten; Notiz v01 erstellt.")},
+    {d:"24-09-26", t:L("Corrections : tubes d'air à travers le joint (plus de perçage du verre), lenticulaire 6 mm, poussoirs taraudés à pas contraires.","Corrections: air tubes through the seal (no more glass drilling), 6 mm lenticular sheet, opposite-thread tapped pushers.","Correcties: luchtbuisjes door de dichting (geen boring in het glas meer), lenticulaire plaat 6 mm, getapte drukstukken met tegengestelde draad.","Korrekturen: Luftröhrchen durch die Dichtung (keine Glasbohrung mehr), Lentikularplatte 6 mm, Gewindedruckstücke mit gegenläufigem Gewinde.")},
+    {d:"25-09-26", t:L("Recherche fournitures : U inox plié 80×40×3, écarteurs double filet inox 316.","Supplies search: bent stainless U 80×40×3, 316 stainless double-thread spreaders.","Zoektocht leveringen: geplooid inox U 80×40×3, dubbeldraadse spreiders inox 316.","Recherche Lieferungen: gekantetes Edelstahl-U 80×40×3, Doppelgewinde-Spreizer Edelstahl 316.")},
+    {d:"25-09-26", t:L("STEP de Jacky (ecran v00 100x40x3) reçu et analysé ; châssis v01 U 80×40×5 et note vent 220 km/h ; mise en ligne du site, v0.1.","Jacky's STEP (ecran v00 100x40x3) received and analysed; frame v01 U 80×40×5 and 220 km/h wind note; site published, v0.1.","STEP van Jacky (ecran v00 100x40x3) ontvangen en geanalyseerd; kader v01 U 80×40×5 en windnota 220 km/u; site online, v0.1.","STEP von Jacky (ecran v00 100x40x3) erhalten und analysiert; Rahmen v01 U 80×40×5 und Windnotiz 220 km/h; Website online, v0.1.")},
+    {d:"25-09-26", t:L("v0.2 — charte commune aux trois dossiers (base, vitrine, aquarium) : mêmes styles, barre de titre et cartouche technique ; site en quatre langues (FR / EN / NL / DE) par onglets ; section Documents avec vignette, numéro, révision et statut ; schémas et plans téléchargeables en PDF avec cartouche et en PNG ; accès par lien ?code=EVA.","v0.2 — shared design for the three files (base, showcase, aquarium): same styles, title bar and technical title block; site in four languages (FR / EN / NL / DE) via tabs; Documents section with thumbnail, number, revision and status; drawings and plans downloadable as PDF with title block and as PNG; access by ?code=EVA link.","v0.2 — gemeenschappelijke huisstijl voor de drie dossiers (sokkel, vitrine, aquarium): dezelfde stijlen, titelbalk en technisch cartouche; site in vier talen (FR / EN / NL / DE) via tabbladen; sectie Documenten met vignet, nummer, revisie en status; schema's en plannen te downloaden als PDF met cartouche en als PNG; toegang via link ?code=EVA.","v0.2 — gemeinsames Erscheinungsbild der drei Dossiers (Sockel, Vitrine, Aquarium): gleiche Stile, Titelleiste und technisches Schriftfeld; Website in vier Sprachen (FR / EN / NL / DE) über Reiter; Abschnitt Dokumente mit Vorschaubild, Nummer, Revision und Status; Skizzen und Pläne als PDF mit Schriftfeld und als PNG herunterladbar; Zugang über Link ?code=EVA.")}
   ]
 };
