@@ -20,6 +20,7 @@
   <section id="montage"></section>
   <section id="vent"></section>
   <section id="fournitures"></section>
+  <section id="inox"></section>
   <section id="ouverts"></section>
   <section id="documents"></section>
   <section id="cao"></section>
@@ -60,7 +61,12 @@ LV.init(window.DATA, "vitrine", ({t, esc}) => {
       <h4>${esc(t(i.nom))}</h4>${i.statut ? `<span class="badge reco">${esc(t(i.statut))}</span>` : ""}<p>${esc(t(i.detail))}</p>${i.ref ? `<div class="ref">${esc(i.ref)}</div>` : ""}
       <div class="links">${i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(t(fo.lien))}</a>` : ""}</div></div></div>`).join("")}</div>`).join("");
 
-  $("#ouverts").innerHTML = `${h2(D.ouverts)}<ul class="pts">${D.ouverts.items.map(x => `<li>${esc(t(x))}</li>`).join("")}</ul>`;
+  const x = D.inox;
+  $("#inox").innerHTML = h2(x) + `<p class="lead">${esc(t(x.lead))}</p>` + x.blocs.map(b => `<h3>${esc(t(b.titre))}</h3><p>${esc(t(b.texte))}</p>${b.note ? `<p class="note">${esc(t(b.note))}</p>` : ""}`).join("")
+    + `<h3>${esc(t(x.prix.titre))}</h3><div class="scroll"><table><tr>${x.prix.colonnes.map(c => `<th>${esc(t(c))}</th>`).join("")}</tr>${x.prix.lignes.map(l => `<tr>${l.map(c => `<td>${esc(t(c))}</td>`).join("")}</tr>`).join("")}</table></div><p class="leg">${esc(t(x.prix.note))}</p>`
+    + `<h3>${esc(t(x.vis.titre))}</h3><div class="kv">${x.vis.items.map(([k, v]) => `<div><b>${esc(t(k))}</b>${esc(t(v))}</div>`).join("")}</div>`;
+
+  $("#ouverts").innerHTML =`${h2(D.ouverts)}<ul class="pts">${D.ouverts.items.map(x => `<li>${esc(t(x))}</li>`).join("")}</ul>`;
 
   $("#cao").innerHTML = `${h2(D.cao)}<p class="leg">${esc(t(D.cao.note))}</p><pre id="prompt">${esc(D.cao.texte)}</pre><button class="copy" data-src="prompt"></button>`;
 });
